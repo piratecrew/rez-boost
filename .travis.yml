@@ -34,7 +34,7 @@ install:
   - rez-bind python
   - git clone https://github.com/piratecrew/rez-python.git
   - cd rez-python
-  - rez-install
+  - rez-build -i
   - cd ..
 
 script:
