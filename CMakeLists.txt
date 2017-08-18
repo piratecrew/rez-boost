@@ -32,7 +32,7 @@ ExternalProject_add(
     BUILD_COMMAND ./b2 ${b2_args}
 )
 
-rez_install_files(
-    cmake/boost.cmake
-    DESTINATION .
+install(
+    FILES cmake/boost.cmake
+    DESTINATION cmake
 )

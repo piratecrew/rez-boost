@@ -1,6 +1,6 @@
 name = "boost"
 
-version = "1.55.0"
+version = "1.62.0"
 
 description = \
     """
@@ -8,16 +8,13 @@ description = \
     """
 
 variants = [
-    ["platform-linux"]
+    ["platform-linux", "python-2.7"]
 ]
 
-requires = [
-    "python"
-]
-
-uuid = "repository.boost"
+uuid = "rezpo.boost"
 
 def commands():
-    env.CMAKE_MODULE_PATH.append("{root}/cmake")
     env.LD_LIBRARY_PATH.append("{root}/lib")
     env.BOOST_ROOT = '{root}'
+    if building:
+        env.CMAKE_MODULE_PATH.append("{root}/cmake")

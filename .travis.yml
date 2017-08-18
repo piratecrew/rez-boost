@@ -1,0 +1,41 @@
+sudo: required
+dist: trusty
+
+language: cpp
+
+env:
+  - VERSION=1.62.0
+  - VERSION=1.61.0
+  - VERSION=1.60.0
+  - VERSION=1.59.0
+  - VERSION=1.58.0
+  - VERSION=1.57.0
+  - VERSION=1.56.0
+  - VERSION=1.55.0
+  - VERSION=1.54.0
+  - VERSION=1.53.0
+  - VERSION=1.52.0
+  - VERSION=1.51.0
+  - VERSION=1.50.0
+
+before_install:
+  - sudo apt-get -qq update
+
+install:
+  - git clone https://github.com/nerdvegas/rez.git
+  - cd rez
+  - python ./install.py -v /tmp/rez
+  - cd ..
+  - export PATH=/tmp/rez/bin/rez:$PATH
+  - mkdir -p /home/travis/packages
+  - rez-bind platform
+  - rez-bind arch
+  - rez-bind os
+  - rez-bind python
+  - git clone git@github.com:piratecrew/rez-python.git
+  - cd rez-python
+  - rez-install
+
+script:
+  - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
+  - rez-build -i
