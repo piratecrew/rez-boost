@@ -32,9 +32,10 @@ install:
   - rez-bind arch
   - rez-bind os
   - rez-bind python
-  - git clone git@github.com:piratecrew/rez-python.git
+  - git clone https://github.com/piratecrew/rez-python.git
   - cd rez-python
   - rez-install
+  - cd ..
 
 script:
   - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
