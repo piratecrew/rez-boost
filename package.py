@@ -4,7 +4,7 @@ version = "1.62.0"
 
 description = \
     """
-    boost
+    Boost provides free peer-reviewed portable C++ source libraries.
     """
 
 variants = [
