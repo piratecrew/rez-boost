@@ -12,11 +12,6 @@ env:
   - VERSION=1.57.0
   - VERSION=1.56.0
   - VERSION=1.55.0
-  - VERSION=1.54.0
-  - VERSION=1.53.0
-  - VERSION=1.52.0
-  - VERSION=1.51.0
-  - VERSION=1.50.0
 
 before_install:
   - sudo apt-get -qq update
