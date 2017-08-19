@@ -13,7 +13,7 @@ else()
     set(install_cmd "")
 endif()
 
-set(b2_args --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
+set(b2_args -d0 --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd ./b2 install ${b2_args})
