@@ -1,11 +1,12 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 include(RezBuild)
+include(RezRepository)
 include(ExternalProject)
 
 set(boost_version ${BOOST_VERSION})
 
-set(url_boost http://downloads.sourceforge.net/project/boost/boost/${boost_version}/boost_${BOOST_MAJOR_VERSION}_${BOOST_MINOR_VERSION}_${BOOST_PATCH_VERSION}.tar.gz)
+rez_set_archive(url_boost http://downloads.sourceforge.net/project/boost/boost/${boost_version}/boost_${BOOST_MAJOR_VERSION}_${BOOST_MINOR_VERSION}_${BOOST_PATCH_VERSION}.tar.gz)
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd make install ${make_args})
