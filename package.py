@@ -15,7 +15,7 @@ variants = [
     ["platform-linux"]
 ]
 
-uuid = "rezpo.boost"
+uuid = "repository.boost"
 
 def commands():
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
