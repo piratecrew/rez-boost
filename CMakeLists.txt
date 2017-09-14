@@ -6,7 +6,7 @@ include(ExternalProject)
 
 set(boost_version ${BOOST_VERSION})
 
-rez_set_archive(url_boost http://downloads.sourceforge.net/project/boost/boost/${boost_version}/boost_${BOOST_MAJOR_VERSION}_${BOOST_MINOR_VERSION}_${BOOST_PATCH_VERSION}.tar.gz)
+rez_set_archive(boost_path boost/boost_${BOOST_MAJOR_VERSION}_${BOOST_MINOR_VERSION}_${BOOST_PATCH_VERSION}.tar.gz http://downloads.sourceforge.net/project/boost/boost/${boost_version}/boost_${BOOST_MAJOR_VERSION}_${BOOST_MINOR_VERSION}_${BOOST_PATCH_VERSION}.tar.gz)
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd make install ${make_args})
@@ -26,7 +26,7 @@ endif()
 
 ExternalProject_add(
     boost
-    URL ${url_boost}
+    URL ${boost_path}
     PREFIX boost
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ./bootstrap.sh

@@ -12,7 +12,7 @@ build_requires = [
 ]
 
 variants = [
-    ["platform-linux"]
+    ["platform-linux", "os-CentOS-7"]
 ]
 
 uuid = "repository.boost"
