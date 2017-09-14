@@ -8,7 +8,7 @@
 # All other inputs are identical to the native FindBoost, see:
 # http://www.cmake.org/cmake/help/cmake-2-8-docs.html#module:FindBoost
 #
-
+set(Boost_ADDITIONAL_VERSIONS $ENV{REZ_BOOST_MAJAOR_VERSION}.$ENV{REZ_BOOST_MINOR_VERSION})
 set(Boost_DETAILED_FAILURE_MSG 1)
 if(boost_STATIC)
 	set(Boost_USE_STATIC_LIBS ${boost_STATIC})

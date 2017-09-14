@@ -7,8 +7,12 @@ description = \
     Boost provides free peer-reviewed portable C++ source libraries.
     """
 
+build_requires = [
+    "python-2.7"
+]
+
 variants = [
-    ["platform-linux", "python-2.7"]
+    ["platform-linux"]
 ]
 
 uuid = "rezpo.boost"
