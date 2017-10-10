@@ -16,7 +16,7 @@ endif()
 
 # Overrides for CI, Travis
 set(boost_modules $ENV{OVERRIDE_BOOST_MODULES})
-set(b2_args -d0 --prefix=${CMAKE_INSTALL_PREFIX} ${boost_modules} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
+set(b2_args -d1 --prefix=${CMAKE_INSTALL_PREFIX} ${boost_modules} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd ./b2 install ${b2_args})
