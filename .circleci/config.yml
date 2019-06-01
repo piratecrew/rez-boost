@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/build_dir
     docker:
-      - image: "buildpack-deps:trusty"
+      - image: "buildpack-deps:bionic"
     environment:
         - OVERRIDE_BOOST_MODULES="--with-python"
         - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
