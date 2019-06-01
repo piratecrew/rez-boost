@@ -12,7 +12,6 @@ env:
     - PATH=$HOME/rez/bin/rez:$PATH
     - OVERRIDE_BOOST_MODULES="--with-python"
     - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
-    - VERSION=1.70.0
 
 jobs:
   include:
@@ -38,6 +37,7 @@ jobs:
         - rm -rf $HOME/packages/boost
     - &build
       stage: build
+      env: VERSION=1.70.0
       script:
         - mkdir -pv ${REZ_REPO_PAYLOAD_DIR}
         - echo "CREATED REZ_REPO_PAYLOAD_DIR: ${REZ_REPO_PAYLOAD_DIR}"
