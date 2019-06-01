@@ -10,16 +10,14 @@ env:
     - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
     - CACHE_NAME=REZ
 
-cache:
-  timeout: 1800
-  directories:
-    $HOME/rez/
-    $HOME/packages/
-
-
 jobs:
   include:
     - stage: precache
+      cache:
+        timeout: 1800
+        directories:
+          $HOME/rez/
+          $HOME/packages/
       script: true
       before_install:
         - sudo apt-get -qq update
