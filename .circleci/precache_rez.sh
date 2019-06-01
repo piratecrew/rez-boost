@@ -8,7 +8,6 @@ cd ..
 mkdir -p $HOME/packages
 ls -al $HOME/rez/bin/
 ls -al $HOME/rez/bin/rez/
-export PATH=$HOME/rez/bin/rez:$PATH
 rez-bind platform
 rez-bind arch
 rez-bind os
