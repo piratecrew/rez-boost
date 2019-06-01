@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/build_dir
+    docker:
+      - image: "centos:7"
+    environment:
+        - OVERRIDE_BOOST_MODULES="--with-python"
+        - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
+        - BOOST_VERSION="1.70.0"
+    steps:
+      - restore_cache:
+          key: rez
+      - run: 'bash .circleci/precache_rez.sh'
+      - save_cache:
+          key: rez
+          paths:
+            - "$HOME/rez"
+            - "$HOME/packages"
+      - checkout
+      - run:
+          name: Build Boost 1.70.0
+          command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
+      - run:
+          name: Build Boost 1.55.0
+          command: 'BOOST_VERSION=1.55.0 bash .circleci/build_boost.sh'
