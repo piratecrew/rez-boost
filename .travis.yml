@@ -21,9 +21,9 @@ jobs:
     - stage: precache
       cache:
         timeout: 1800
-          directories:
-            $HOME/rez/
-            $HOME/packages/
+        directories:
+          $HOME/rez/
+          $HOME/packages/
       script: true
       before_install:
         - sudo apt-get -qq update
