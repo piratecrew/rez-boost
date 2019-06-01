@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 mkdir -pv ${REZ_REPO_PAYLOAD_DIR}
 echo "CREATED REZ_REPO_PAYLOAD_DIR ${REZ_REPO_PAYLOAD_DIR}"
 BOOST_ARCHIVE_URL=http://downloads.sourceforge.net/project/boost/boost/${BOOST_VERSION}/boost_$(echo ${BOOST_VERSION} | tr "." "_").tar.gz

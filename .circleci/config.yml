@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: "buildpack-deps:bionic"
     environment:
-        - OVERRIDE_BOOST_MODULES="--with-python"
+        - OVERRIDE_BOOST_MODULES=--with-python
         - REZ_REPO_PAYLOAD_DIR=/tmp/REPO
     steps:
       - run: echo 'export PATH=$HOME/rez/bin/rez:$PATH' >> $BASH_ENV

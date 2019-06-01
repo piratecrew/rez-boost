@@ -1,4 +1,9 @@
 #!/bin/bash
+if [[ -d "$HOME/rez/bin/rez" ]]; then
+    echo "Cache retrieved!"
+    exit 0
+fi
+set -e
 OLDPWD=$PWD
 cd /tmp
 git clone https://github.com/nerdvegas/rez.git
