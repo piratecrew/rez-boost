@@ -6,6 +6,7 @@ language: cpp
 env:
   global:
     - OVERRIDE_BOOST_MODULES="--with-python"
+    - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
   matrix:
     - VERSION=1.70.0
     - VERSION=1.69.0
@@ -44,5 +45,7 @@ install:
   - cd ..
 
 script:
+  - mkdir -p ${REZ_REPO_PAYLOAD_DIR}
+  - (cd ${REZ_REPO_PAYLOAD_DIR}; curl -Lo ${REZ_REPO_PAYLOAD_DIR} http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz)
   - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
   - rez-build -i
