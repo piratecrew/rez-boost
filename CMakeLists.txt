@@ -18,9 +18,13 @@ endif()
 if(DEFINED ENV{CI})
     set(boost_bootstrap_args --with-python=$ENV{REZ_PYTHON_ROOT}/bin/python --with-python-root=$ENV{REZ_PYTHON_ROOT})
     set(boost_modules --with-python)
+endif()
+
 set(b2_args -d1 --prefix=${CMAKE_INSTALL_PREFIX} ${boost_modules} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
 
+message(STATUS "BOOTSTRAP ARGS: ${boost_bootstrap_args}")
 message(STATUS "BOOST ARGS: ${b2_args}")
+
 if(${REZ_BUILD_INSTALL})
     set(install_cmd ./b2 install ${b2_args})
 else()
