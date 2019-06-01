@@ -19,4 +19,5 @@ rez-bind os
 git clone https://github.com/piratecrew/rez-python.git
 cd rez-python
 rez-build -i
+rez-env python -- python-config --cflags
 cd $PWD
