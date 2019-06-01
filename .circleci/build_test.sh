@@ -4,6 +4,11 @@ cd build_test_${VERSION}
 cat > greet.cpp << EOF
 #include <boost/python.hpp>
 
+char const* greet()
+{
+   return "hello, world";
+}
+
 BOOST_PYTHON_MODULE(hello_ext)
 {
     using namespace boost::python;
@@ -14,15 +19,14 @@ EOF
 cat > package.py << EOF
 name = "boost_test"
 
-version = "${VERSION}"
+version = "1.70.0"
 
-description = \
-    """
+description = """
     Test Boost build
     """
 
 build_requires = [
-    "boost-${VERSION}"
+    "boost-1.70.0"
 ]
 
 def commands():
@@ -34,13 +38,14 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 include(RezBuild)
 include(RezRepository)
-
-rez_find_packages(PREFIX pkg AUTO)
+set(boost_COMPONENTS python)
+rez_find_packages(boost python PREFIX pkg AUTO)
+link_directories(\${boost_LIBRARY_DIRS})
 
 add_library(hello_ext SHARED greet.cpp)
-link_directories(${pkg_LIBRARY_DIRS})
-target_include_directories(hello_ext PRIVATE ${pkg_INCLUDE_DIRS})
-target_link_libraries(hello_ext PRIVATE ${pkg_LIBRARIES})
+target_include_directories(hello_ext PRIVATE \${pkg_INCLUDE_DIRECTORIES})
+target_link_libraries(hello_ext PRIVATE \${pkg_LIBRARIES})
+set_target_properties(hello_ext PROPERTIES PREFIX "")
 
 install(TARGETS hello_ext DESTINATION python)
 EOF
