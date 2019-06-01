@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -d "$HOME/rez/bin/rez"]; then
+if [[ -d "$HOME/rez/bin/rez" ]]; then
     echo "Cache retrieved!"
     exit 0
 fi
