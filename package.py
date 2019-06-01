@@ -1,6 +1,6 @@
 name = "boost"
 
-version = "1.56.0"
+version = "1.55.0"
 
 description = \
     """
@@ -11,9 +11,11 @@ build_requires = [
     "python-2.7"
 ]
 
-variants = [
-    ["platform-linux", "os-CentOS-7"]
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "os-*.*"]
+    return [expand_requires(*requires)]
 
 uuid = "repository.boost"
 
