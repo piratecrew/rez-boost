@@ -16,7 +16,6 @@ ls -al $HOME/rez/bin/rez/
 rez-bind platform
 rez-bind arch
 rez-bind os
-rez-bind python
 git clone https://github.com/piratecrew/rez-python.git
 cd rez-python
 rez-build -i
