@@ -5,10 +5,12 @@ jobs:
     docker:
       - image: "buildpack-deps:trusty"
     environment:
+        - BASH_ENV: ~/.bashrc
         - OVERRIDE_BOOST_MODULES="--with-python"
         - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
         - BOOST_VERSION="1.70.0"
     steps:
+      - run: echo 'export PATH=$HOME/rez/bin/rez:$PATH' >> $BASH_ENV
       - checkout
       - restore_cache:
           key: rez
