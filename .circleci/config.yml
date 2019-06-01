@@ -17,8 +17,8 @@ jobs:
       - save_cache:
           key: -v1-rez-python
           paths:
-            - $HOME/rez
-            - $HOME/packages
+            - /root/rez
+            - /root/packages
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'

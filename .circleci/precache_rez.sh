@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p $HOME/packages
+mkdir -p /root/packages
 
 if [[ -d "$HOME/rez/bin/rez" ]]; then
     echo "Cache Exists Skipping!"
@@ -10,10 +10,10 @@ OLDPWD=$PWD
 cd /tmp
 git clone https://github.com/nerdvegas/rez.git
 cd rez
-python ./install.py -v $HOME/rez
+python ./install.py -v /root/rez
 cd ..
-ls -al $HOME/rez/bin/
-ls -al $HOME/rez/bin/rez/
+ls -al /root/rez/bin/
+ls -al /root/rez/bin/rez/
 rez-bind platform
 rez-bind arch
 rez-bind os
