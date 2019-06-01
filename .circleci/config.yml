@@ -10,7 +10,7 @@ jobs:
         - BOOST_VERSION="1.70.0"
     steps:
       - run: echo 'export PATH=$HOME/rez/bin/rez:$PATH' >> $BASH_ENV
-      - run: sudo apt-get update && sudo apt-get install cmake
+      - run: sudo apt-get update && sudo apt-get install -y cmake
       - checkout
       - restore_cache:
           key: rez
