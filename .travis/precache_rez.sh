@@ -10,6 +10,8 @@ cd rez
 python ./install.py -v $HOME/rez
 cd ..
 mkdir -p $HOME/packages
+ls -al /root/rez/bin/
+ls -al /root/rez/bin/rez/
 /root/rez/bin/rez/rez-bind platform
 /root/rez/bin/rez/rez-bind arch
 /root/rez/bin/rez/rez-bind os
