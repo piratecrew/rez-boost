@@ -12,9 +12,9 @@ env:
 
 cache:
   timeout: 1800
-    directories:
-      $HOME/rez/
-      $HOME/packages/
+  directories:
+    $HOME/rez/
+    $HOME/packages/
 
 jobs:
   include:
