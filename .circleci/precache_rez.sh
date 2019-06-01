@@ -8,11 +8,12 @@ cd ..
 mkdir -p $HOME/packages
 ls -al $HOME/rez/bin/
 ls -al $HOME/rez/bin/rez/
-$HOME/rez/bin/rez/rez-bind platform
-$HOME/rez/bin/rez/rez-bind arch
-$HOME/rez/bin/rez/rez-bind os
-$HOME/rez/bin/rez/rez-bind python
+export PATH=$HOME/rez/bin/rez:$PATH
+rez-bind platform
+rez-bind arch
+rez-bind os
+rez-bind python
 git clone https://github.com/piratecrew/rez-python.git
 cd rez-python
-$HOME/rez/bin/rez/rez-build -i
+rez-build -i
 cd $PWD
