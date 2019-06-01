@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/build_dir
     docker:
-      - image: "centos:7"
+      - image: "buildpack-deps:trusty"
     environment:
         - OVERRIDE_BOOST_MODULES="--with-python"
         - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
