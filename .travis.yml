@@ -44,7 +44,8 @@ jobs:
         - BOOST_ARCHIVE_URL=http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz
         - echo "BOOST ARCHIVE URL ${BOOST_ARCHIVE_URL}"
         - OLDPWD=$PWD
-        - cd ${REZ_REPO_PAYLOAD_DIR}
+        - mkdir -p ${REZ_REPO_PAYLOAD_DIR}/boost
+        - cd ${REZ_REPO_PAYLOAD_DIR}/boost
         - curl -LO $BOOST_ARCHIVE_URL
         - cd $OLDPWD
         - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
