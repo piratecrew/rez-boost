@@ -33,6 +33,7 @@ jobs:
         - ls $HOME/packages
         - bash .travis/precache_rez.sh
     - &build
+      name: "Build Boost ${VERSION}"
       stage: build
       env: VERSION=1.70.0
       script:
