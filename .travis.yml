@@ -12,6 +12,7 @@ env:
     - PATH=$HOME/rez/bin/rez:$PATH
     - OVERRIDE_BOOST_MODULES="--with-python"
     - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
+    - VERSION=1.70.0
 
 jobs:
   include:
@@ -38,39 +39,43 @@ jobs:
     - &build
       stage: build
       script:
-        - mkdir -p ${REZ_REPO_PAYLOAD_DIR}
-        - (cd ${REZ_REPO_PAYLOAD_DIR}; curl -LO http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz)
+        - mkdir -pv ${REZ_REPO_PAYLOAD_DIR}
+        - echo "CREATED REZ_REPO_PAYLOAD_DIR: ${REZ_REPO_PAYLOAD_DIR}"
+        - BOOST_ARCHIVE_URL=http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz
+        - echo "BOOST ARCHIVE URL: ${BOOST_ARCHIVE_URL}"
+        - OLDPWD=$PWD
+        - cd ${REZ_REPO_PAYLOAD_DIR}
+        - curl -LO $BOOST_ARCHIVE_URL
+        - cd $OLDPWD
         - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
         - rez-build -i
-    - <<: *build
-      env: VERSION=1.70.0
-    - <<: *build
-      env: VERSION=1.69.0
-    - <<: *build
-      env: VERSION=1.68.0
-    - <<: *build
-      env: VERSION=1.67.0
-    - <<: *build
-      env: VERSION=1.66.0
-    - <<: *build
-      env: VERSION=1.65.1
-    - <<: *build
-      env: VERSION=1.64.0
-    - <<: *build
-      env: VERSION=1.63.0
-    - <<: *build
-      env: VERSION=1.62.0
-    - <<: *build
-      env: VERSION=1.61.0
-    - <<: *build
-      env: VERSION=1.60.0
-    - <<: *build
-      env: VERSION=1.59.0
-    - <<: *build
-      env: VERSION=1.58.0
-    - <<: *build
-      env: VERSION=1.57.0
-    - <<: *build
-      env: VERSION=1.56.0
-    - <<: *build
-      env: VERSION=1.55.0
+    #- <<: *build
+    #  env: VERSION=1.69.0
+    #- <<: *build
+    #  env: VERSION=1.68.0
+    #- <<: *build
+    #  env: VERSION=1.67.0
+    #- <<: *build
+    #  env: VERSION=1.66.0
+    #- <<: *build
+    #  env: VERSION=1.65.1
+    #- <<: *build
+    #  env: VERSION=1.64.0
+    #- <<: *build
+    #  env: VERSION=1.63.0
+    #- <<: *build
+    #  env: VERSION=1.62.0
+    #- <<: *build
+    #  env: VERSION=1.61.0
+    #- <<: *build
+    #  env: VERSION=1.60.0
+    #- <<: *build
+    #  env: VERSION=1.59.0
+    #- <<: *build
+    #  env: VERSION=1.58.0
+    #- <<: *build
+    #  env: VERSION=1.57.0
+    #- <<: *build
+    #  env: VERSION=1.56.0
+    #- <<: *build
+    #  env: VERSION=1.55.0
