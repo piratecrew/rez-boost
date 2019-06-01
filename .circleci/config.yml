@@ -6,8 +6,7 @@ jobs:
       - image: "buildpack-deps:bionic"
     environment:
         - OVERRIDE_BOOST_MODULES="--with-python"
-        - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
-        - BOOST_VERSION="1.70.0"
+        - REZ_REPO_PAYLOAD_DIR=/tmp/REPO
     steps:
       - run: echo 'export PATH=$HOME/rez/bin/rez:$PATH' >> $BASH_ENV
       - run: apt-get update && apt-get install -y cmake
