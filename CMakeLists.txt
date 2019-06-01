@@ -14,10 +14,13 @@ else()
     set(install_cmd "")
 endif()
 
-# Overrides for CI, Travis
-set(boost_modules $ENV{OVERRIDE_BOOST_MODULES})
+# Overrides for CI, Travis, CircleCI
+if(DEFINED ENV{CI})
+    set(boost_bootstrap_args --with-python=$ENV{REZ_PYTHON_ROOT}/bin/python --with-python-root=$ENV{REZ_PYTHON_ROOT})
+    set(boost_modules --with-python)
 set(b2_args -d1 --prefix=${CMAKE_INSTALL_PREFIX} ${boost_modules} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
 
+message(STATUS "BOOST ARGS: ${b2_args}")
 if(${REZ_BUILD_INSTALL})
     set(install_cmd ./b2 install ${b2_args})
 else()
@@ -29,7 +32,7 @@ ExternalProject_add(
     URL ${boost_path}
     PREFIX boost
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ./bootstrap.sh
+    CONFIGURE_COMMAND ./bootstrap.sh ${boost_bootstrap_args}
     INSTALL_COMMAND ${install_cmd}
     BUILD_IN_SOURCE 1
     BUILD_COMMAND ./b2 ${b2_args}
