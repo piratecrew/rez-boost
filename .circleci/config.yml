@@ -12,10 +12,10 @@ jobs:
       - run: apt-get update && apt-get install -y cmake
       - checkout
       - restore_cache:
-          key: -v1-rez-python
+          key: -v2-rez-python
       - run: 'bash .circleci/precache_rez.sh'
       - save_cache:
-          key: -v1-rez-python
+          key: -v2-rez-python
           paths:
             - /root/rez
             - /root/packages
