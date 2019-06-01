@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
-       - run:
+      - run:
           name: Test Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_test.sh'
       - run:
