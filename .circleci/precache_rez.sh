@@ -19,6 +19,6 @@ rez-bind os
 git clone https://github.com/piratecrew/rez-python.git
 cd rez-python
 rez-build -i
-echo "PYTHON CONFIG"
+echo "PYTHON CONFIGS CFLAGS:"
 rez-env python -- python-config --cflags
 cd $PWD
