@@ -23,5 +23,8 @@ jobs:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
       - run:
+          name: Build Boost 1.65.1.0
+          command: 'BOOST_VERSION=1.55.0 bash .circleci/build_boost.sh'
+      - run:
           name: Build Boost 1.55.0
           command: 'BOOST_VERSION=1.55.0 bash .circleci/build_boost.sh'
