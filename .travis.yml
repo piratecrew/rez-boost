@@ -3,6 +3,10 @@ dist: trusty
 
 language: cpp
 
+cache:
+    directories:
+      $HOME/rez
+      $HOME/packages
 env:
   global:
     - OVERRIDE_BOOST_MODULES="--with-python"
@@ -28,24 +32,31 @@ env:
 before_install:
   - sudo apt-get -qq update
 
-install:
-  - git clone https://github.com/nerdvegas/rez.git
-  - cd rez
-  - python ./install.py -v /tmp/rez
-  - cd ..
-  - export PATH=/tmp/rez/bin/rez:$PATH
-  - mkdir -p /home/travis/packages
-  - rez-bind platform
-  - rez-bind arch
-  - rez-bind os
-  - rez-bind python
-  - git clone https://github.com/piratecrew/rez-python.git
-  - cd rez-python
-  - rez-build -i
-  - cd ..
+before_cache:
+  - rm -rf $HOME/packages/boost
 
-script:
-  - mkdir -p ${REZ_REPO_PAYLOAD_DIR}
-  - (cd ${REZ_REPO_PAYLOAD_DIR}; curl -Lo ${REZ_REPO_PAYLOAD_DIR} http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz)
-  - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
-  - rez-build -i
+jobs:
+  include:
+    - stage: precache
+      script: true
+      install:
+        - git clone https://github.com/nerdvegas/rez.git
+        - cd rez
+        - python ./install.py -v $HOME/rez
+        - cd ..
+        - export PATH=/tmp/rez/bin/rez:$PATH
+        - mkdir -p $HOME/packages
+        - rez-bind platform
+        - rez-bind arch
+        - rez-bind os
+        - rez-bind python
+        - git clone https://github.com/piratecrew/rez-python.git
+        - cd rez-python
+        - rez-build -i
+        - cd ..
+    - stage: build  
+      script:
+        - mkdir -p ${REZ_REPO_PAYLOAD_DIR}
+        - (cd ${REZ_REPO_PAYLOAD_DIR}; curl -L http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz)
+        - sed -i s/version.*=.*/version=\"${VERSION}\"/ package.py
+        - rez-build -i
