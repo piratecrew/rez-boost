@@ -40,9 +40,9 @@ jobs:
       env: VERSION=1.70.0
       script:
         - mkdir -pv ${REZ_REPO_PAYLOAD_DIR}
-        - echo "CREATED REZ_REPO_PAYLOAD_DIR: ${REZ_REPO_PAYLOAD_DIR}"
+        - echo "CREATED REZ_REPO_PAYLOAD_DIR ${REZ_REPO_PAYLOAD_DIR}"
         - BOOST_ARCHIVE_URL=http://downloads.sourceforge.net/project/boost/boost/${VERSION}/boost_$(echo ${VERSION} | tr "." "_").tar.gz
-        - echo "BOOST ARCHIVE URL: ${BOOST_ARCHIVE_URL}"
+        - echo "BOOST ARCHIVE URL ${BOOST_ARCHIVE_URL}"
         - OLDPWD=$PWD
         - cd ${REZ_REPO_PAYLOAD_DIR}
         - curl -LO $BOOST_ARCHIVE_URL
