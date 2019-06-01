@@ -9,7 +9,7 @@ cache:
       $HOME/packages
 env:
   global:
-    - PATH=/tmp/rez/bin/rez:$PATH
+    - PATH=$HOME/rez/bin/rez:$PATH
     - OVERRIDE_BOOST_MODULES="--with-python"
     - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
   matrix:
