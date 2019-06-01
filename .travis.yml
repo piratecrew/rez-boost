@@ -9,42 +9,38 @@ cache:
       $HOME/packages
 env:
   global:
+    - PATH=/tmp/rez/bin/rez:$PATH
     - OVERRIDE_BOOST_MODULES="--with-python"
     - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
   matrix:
     - VERSION=1.70.0
-    - VERSION=1.69.0
-    - VERSION=1.68.0
-    - VERSION=1.67.0
-    - VERSION=1.66.0
-    - VERSION=1.65.1
-    - VERSION=1.64.0
-    - VERSION=1.63.0
-    - VERSION=1.62.0
-    - VERSION=1.61.0
-    - VERSION=1.60.0
-    - VERSION=1.59.0
-    - VERSION=1.58.0
-    - VERSION=1.57.0
-    - VERSION=1.56.0
-    - VERSION=1.55.0
-
-before_install:
-  - sudo apt-get -qq update
-
-before_cache:
-  - rm -rf $HOME/packages/boost
+    #- VERSION=1.69.0
+    #- VERSION=1.68.0
+    #- VERSION=1.67.0
+    #- VERSION=1.66.0
+    #- VERSION=1.65.1
+    #- VERSION=1.64.0
+    #- VERSION=1.63.0
+    #- VERSION=1.62.0
+    #- VERSION=1.61.0
+    #- VERSION=1.60.0
+    #- VERSION=1.59.0
+    #- VERSION=1.58.0
+    #- VERSION=1.57.0
+    #- VERSION=1.56.0
+    #- VERSION=1.55.0
 
 jobs:
   include:
     - stage: precache
       script: true
+      before_install:
+        - sudo apt-get -qq update
       install:
         - git clone https://github.com/nerdvegas/rez.git
         - cd rez
         - python ./install.py -v $HOME/rez
         - cd ..
-        - export PATH=/tmp/rez/bin/rez:$PATH
         - mkdir -p $HOME/packages
         - rez-bind platform
         - rez-bind arch
@@ -54,6 +50,8 @@ jobs:
         - cd rez-python
         - rez-build -i
         - cd ..
+      before_cache:
+        - rm -rf $HOME/packages/boost
     - stage: build  
       script:
         - mkdir -p ${REZ_REPO_PAYLOAD_DIR}
