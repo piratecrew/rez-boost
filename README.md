@@ -1,7 +1,7 @@
 # rez-boost
 Rez Package for boost
 ----
-[![Build Status](https://travis-ci.org/piratecrew/rez-boost.svg?branch=master)](https://travis-ci.org/piratecrew/rez-boost)
+[![CircleCI](https://circleci.com/gh/piratecrew/rez-boost.svg?style=svg)](https://circleci.com/gh/piratecrew/rez-boost)
 
 Build status id for versions:
   - 1.70.0

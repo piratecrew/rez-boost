@@ -12,13 +12,13 @@ jobs:
       - run: apt-get update && apt-get install -y cmake
       - checkout
       - restore_cache:
-          key: rez
+          key: -v1-rez-python
       - run: 'bash .circleci/precache_rez.sh'
       - save_cache:
-          key: rez
+          key: -v1-rez-python
           paths:
-            - "$HOME/rez"
-            - "$HOME/packages"
+            - $HOME/rez
+            - $HOME/packages
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
