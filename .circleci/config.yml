@@ -9,6 +9,7 @@ jobs:
         - REZ_REPO_PAYLOAD_DIR="/tmp/REPO"
         - BOOST_VERSION="1.70.0"
     steps:
+      - checkout
       - restore_cache:
           key: rez
       - run: 'bash .circleci/precache_rez.sh'
@@ -17,7 +18,6 @@ jobs:
           paths:
             - "$HOME/rez"
             - "$HOME/packages"
-      - checkout
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
