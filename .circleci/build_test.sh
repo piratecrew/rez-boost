@@ -38,7 +38,7 @@ include(RezRepository)
 rez_find_packages(PREFIX pkg AUTO)
 
 add_library(hello_ext SHARED greet.cpp)
-target_link_directories(hello_ext ${pkg_INCLUDE_DIRS})
+link_directories(${pkg_LIBRARY_DIRS})
 target_include_directories(hello_ext PRIVATE ${pkg_INCLUDE_DIRS})
 target_link_libraries(hello_ext PRIVATE ${pkg_LIBRARIES})
 
