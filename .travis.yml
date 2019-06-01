@@ -3,10 +3,6 @@ dist: trusty
 
 language: cpp
 
-cache:
-    directories:
-      $HOME/rez
-      $HOME/packages
 env:
   global:
     - PATH=$HOME/rez/bin/rez:$PATH
@@ -19,7 +15,7 @@ jobs:
       script: true
       before_install:
         - sudo apt-get -qq update
-      install:
+      install: # Make sure this doesn't run if found in cache
         - git clone https://github.com/nerdvegas/rez.git
         - cd rez
         - python ./install.py -v $HOME/rez
@@ -33,11 +29,19 @@ jobs:
         - cd rez-python
         - rez-build -i
         - cd ..
-      before_cache:
-        - rm -rf $HOME/packages/boost
+      cache:
+        directories:
+          $HOME/rez
+          $HOME/packages
     - &build
       stage: build
       env: VERSION=1.70.0
+      cache:
+        directories:
+          $HOME/rez
+          $HOME/packages
+      before_cache:
+        - rm -rf $HOME/packages/boost/${VERSION}
       script:
         - mkdir -pv ${REZ_REPO_PAYLOAD_DIR}
         - echo "CREATED REZ_REPO_PAYLOAD_DIR ${REZ_REPO_PAYLOAD_DIR}"
