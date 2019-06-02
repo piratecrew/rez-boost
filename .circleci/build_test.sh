@@ -19,14 +19,14 @@ EOF
 cat > package.py << EOF
 name = "boost_test"
 
-version = "1.70.0"
+version = "${VERSION}"
 
 description = """
     Test Boost build
     """
 
 build_requires = [
-    "boost-1.70.0"
+    "boost-${VERSION}"
 ]
 
 requires = [
@@ -55,5 +55,5 @@ install(TARGETS hello_ext DESTINATION python)
 EOF
 
 /tmp/REZ/rez/bin/rez/rez-build -i -- -- VERBOSE=1
-/tmp/REZ/rez/bin/rez/rez-env boost_test -- python -c "import hello_ext;print hello_ext.greet()"
+/tmp/REZ/rez/bin/rez/rez-env boost_test-${VERSION} -- python -c "import hello_ext;print hello_ext.greet()"
 
