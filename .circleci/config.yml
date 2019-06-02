@@ -33,6 +33,7 @@ jobs:
   build_1_70_0:
     executor: my-executor
     steps:
+      - run: apt-get update && apt-get install -y cmake
       - attach_workspace:
           at: /tmp/REZ
       - checkout
@@ -45,6 +46,7 @@ jobs:
   build_1_65_1:
     executor: my-executor
     steps:
+      - run: apt-get update && apt-get install -y cmake
       - attach_workspace:
           at: /tmp/REZ
       - checkout
@@ -57,6 +59,7 @@ jobs:
   build_1_55_0:
     executor: my-executor
     steps:
+      - run: apt-get update && apt-get install -y cmake
       - attach_workspace:
           at: /tmp/REZ
       - checkout
