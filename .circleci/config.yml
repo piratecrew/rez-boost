@@ -1,24 +1,42 @@
-version: 2
+version: 2.1
+
+executors:
+  my-executor:
+    docker:
+      - image: buildpack-deps:bionic
+    working_directory: /tmp/REZ
+    environment:
+        - OVERRIDE_BOOST_MODULES=--with-python
+        - REZ_REPO_PAYLOAD_DIR=/tmp/REZ/REPO
+        - REZ_LOCAL_PACKAGES_PATH=/tmp/REZ/packages
+
 jobs:
-  build:
+  prepare:
+    executor: my-executor
     working_directory: ~/build_dir
     docker:
       - image: "buildpack-deps:bionic"
-    environment:
-        - OVERRIDE_BOOST_MODULES=--with-python
-        - REZ_REPO_PAYLOAD_DIR=/tmp/REPO
     steps:
-      - run: echo 'export PATH=$HOME/rez/bin/rez:$PATH' >> $BASH_ENV
       - run: apt-get update && apt-get install -y cmake
       - checkout
       - restore_cache:
-          key: -v2-rez-python
+          key: -v3-rez-python
       - run: 'bash .circleci/precache_rez.sh'
       - save_cache:
-          key: -v2-rez-python
+          key: -v3-rez-python
           paths:
-            - /root/rez
-            - /root/packages
+            - /tmp/REZ/rez
+            - /tmp/REZ/packages
+      - persist_to_workspace:
+          root: /tmp/REZ/
+          paths:
+            - rez
+            - packages
+  build:
+    steps:
+    - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/REZ
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
@@ -37,3 +55,13 @@ jobs:
       - run:
           name: Test Boost 1.55.0
           command: 'BOOST_VERSION=1.55.0 bash .circleci/build_test.sh'
+
+workflows:
+  version: 2
+
+  btd:
+    jobs:
+      - prepare
+      - build:
+          requires:
+            - prepare

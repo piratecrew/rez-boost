@@ -10,4 +10,4 @@ cd ${REZ_REPO_PAYLOAD_DIR}/boost
 curl -LO $BOOST_ARCHIVE_URL
 cd $OLDPWD
 sed -i s/version.*=.*/version=\"${BOOST_VERSION}\"/ package.py
-$HOME/rez/bin/rez/rez-build -i
+/tmp/REZ/rez/bin/rez/rez-build -i

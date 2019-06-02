@@ -54,6 +54,6 @@ set_target_properties(hello_ext PROPERTIES PREFIX "")
 install(TARGETS hello_ext DESTINATION python)
 EOF
 
-rez-build -i -- -- VERBOSE=1
-rez-env boost_test -- python -c "import hello_ext;print hello_ext.greet()"
+/tmp/REZ/rez/bin/rez/rez-build -i -- -- VERBOSE=1
+/tmp/REZ/rez/bin/rez/rez-env boost_test -- python -c "import hello_ext;print hello_ext.greet()"
 
