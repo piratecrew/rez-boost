@@ -30,24 +30,36 @@ jobs:
           paths:
             - rez
             - packages
-  build:
+  build_1_70_0:
     executor: my-executor
     steps:
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
           at: /tmp/REZ
+      - checkout
       - run:
           name: Build Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_boost.sh'
       - run:
           name: Test Boost 1.70.0
           command: 'BOOST_VERSION=1.70.0 bash .circleci/build_test.sh'
+  build_1_65_1:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: /tmp/REZ
+      - checkout
       - run:
           name: Build Boost 1.65.1
           command: 'BOOST_VERSION=1.65.1 bash .circleci/build_boost.sh'
       - run:
           name: Test Boost 1.65.1
           command: 'BOOST_VERSION=1.65.1 bash .circleci/build_test.sh'
+  build_1_55_0:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: /tmp/REZ
+      - checkout
       - run:
           name: Build Boost 1.55.0
           command: 'BOOST_VERSION=1.55.0 bash .circleci/build_boost.sh'
@@ -58,9 +70,15 @@ jobs:
 workflows:
   version: 2
 
-  btd:
+  build_test:
     jobs:
       - prepare
-      - build:
+      - build_1_70_0:
+          requires:
+            - prepare
+      - build_1_65_1:
+          requires:
+            - prepare
+      - build_1_55_0:
           requires:
             - prepare
