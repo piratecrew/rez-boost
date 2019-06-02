@@ -29,6 +29,10 @@ build_requires = [
     "boost-1.70.0"
 ]
 
+requires = [
+    python-2.7
+]
+
 def commands():
     env.PYTHONPATH.append("{root}/python")
 EOF
