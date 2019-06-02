@@ -4,7 +4,7 @@ executors:
   my-executor:
     docker:
       - image: buildpack-deps:bionic
-    working_directory: /tmp/REZ
+    working_directory: /tmp/REZ/build_dir
     environment:
         - OVERRIDE_BOOST_MODULES=--with-python
         - REZ_REPO_PAYLOAD_DIR=/tmp/REZ/REPO
