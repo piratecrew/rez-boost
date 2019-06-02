@@ -15,7 +15,7 @@ else()
 endif()
 
 set(boost_bootstrap_args --with-python=$ENV{REZ_PYTHON_ROOT}/bin/python --with-python-root=$ENV{REZ_PYTHON_ROOT})
-set(b2_args -d1 --prefix=${CMAKE_INSTALL_PREFIX} --with-python --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
+set(b2_args -d1 --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static,shared --toolset=gcc cxxflags=-fPIC)
 
 
 if(${REZ_BUILD_INSTALL})
