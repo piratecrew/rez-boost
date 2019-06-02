@@ -13,9 +13,6 @@ executors:
 jobs:
   prepare:
     executor: my-executor
-    working_directory: ~/build_dir
-    docker:
-      - image: "buildpack-deps:bionic"
     steps:
       - run: apt-get update && apt-get install -y cmake
       - checkout
@@ -33,8 +30,9 @@ jobs:
             - rez
             - packages
   build:
+    executor: my-executor
     steps:
-    - attach_workspace:
+      - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /tmp/REZ
       - run:
