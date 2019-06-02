@@ -30,7 +30,7 @@ build_requires = [
 ]
 
 requires = [
-    python-2.7
+    "python-2.7"
 ]
 
 def commands():
