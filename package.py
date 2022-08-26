@@ -7,14 +7,14 @@ description = \
     Boost provides free peer-reviewed portable C++ source libraries.
     """
 private_build_requires = [
-    "python-3.7"
+    "python-3"
 ]
 
 @early()
 def build_requires():
     # check if the system gcc is too old <9
     # then we require devtoolset-9
-    requirements = ["~python-3.7"]
+    requirements = ["~python-3"]
     from subprocess import check_output
     gcc_major = int(check_output(r"gcc -dumpversion | cut -f1 -d.", shell=True).strip().decode())
     if gcc_major < 9:
@@ -22,13 +22,12 @@ def build_requires():
 
     return requirements
 
-requires = [
-    "~python-3.7"
+variants = [
+    ["platform-linux", "~python-3.7"],
+    ["platform-linux", "~python-3.9"]
 ]
 
-variants = [
-    ["platform-linux"]
-]
+hashed_variants = True
 
 build_command = "make -f {root}/Makefile {install}"
 
