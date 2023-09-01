@@ -1,6 +1,6 @@
 name = "boost"
 
-version = "1.73.0"
+version = "1.80.0"
 
 description = \
     """
