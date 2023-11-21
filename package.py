@@ -24,7 +24,8 @@ def build_requires():
 
 variants = [
     ["platform-linux", "~python-3.7"],
-    ["platform-linux", "~python-3.9"]
+    ["platform-linux", "~python-3.9"],
+    ["platform-linux", "~python-3.10"],
 ]
 
 hashed_variants = True
