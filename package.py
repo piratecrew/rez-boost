@@ -1,6 +1,6 @@
 name = "boost"
 
-version = "1.80.0"
+version = "1.82.0"
 
 description = \
     """
@@ -10,21 +10,13 @@ private_build_requires = [
     "python-3"
 ]
 
-@early()
-def build_requires():
-    # check if the system gcc is too old <9
-    # then we require devtoolset-9
-    requirements = ["~python-3"]
-    from subprocess import check_output
-    gcc_major = int(check_output(r"gcc -dumpversion | cut -f1 -d.", shell=True).strip().decode())
-    if gcc_major < 9:
-        requirements.append("devtoolset-9")
-
-    return requirements
+build_requires = [
+    "gcctoolset-9"
+]
 
 variants = [
-    ["platform-linux", "~python-3.7"],
-    ["platform-linux", "~python-3.9"]
+    ["platform-linux", "~python-3.9"],
+    ["platform-linux", "~python-3.10"]
 ]
 
 hashed_variants = True
