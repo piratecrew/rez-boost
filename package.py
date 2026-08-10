@@ -8,11 +8,8 @@ description = \
     """
 
 private_build_requires = [
-    "python-3"
-]
-
-build_requires = [
-    "gcctoolset-9"
+    "python-3",
+    "gcc-11"
 ]
 
 variants = [
