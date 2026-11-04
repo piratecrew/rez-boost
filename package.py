@@ -15,7 +15,8 @@ private_build_requires = [
 variants = [
     ["platform-linux", "~python-3.9"],
     ["platform-linux", "~python-3.10"],
-    ["platform-linux", "~python-3.11"]
+    ["platform-linux", "~python-3.11"],
+    ["platform-linux", "~python-3.13"]
 ]
 
 hashed_variants = True
